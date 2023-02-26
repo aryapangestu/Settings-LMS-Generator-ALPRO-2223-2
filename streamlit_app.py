@@ -16,7 +16,7 @@ def load_data(sheets_url):
 
 st.set_page_config(layout="wide", page_icon="🎓",
                    page_title="Generator")
-st.title("🎓 Generator ALPRO")
+st.title("🎓 Generator ALPRO 2223-2")
 left, right = st.columns([1, 3])
 
 right.write("Hasil:")
