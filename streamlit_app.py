@@ -26,7 +26,7 @@ left.write("Isi datanya:")
 
 jenis = left.selectbox(
     "Jenis",
-    ["Jurnal", "TP", "Question Bank", "Duduk acak"],
+    ["Duduk acak", "Jurnal", "TP", "Question Bank"],
     index=0,
 )
 listKelas = ["IF-46-01", "IF-46-02", "IF-46-03", "IF-46-04", "IF-46-05", "IF-46-06", "IF-46-07", "IF-46-08", "IF-46-09", "IF-46-10", "IF-46-11", "IF-46-12", "IF-46-INT",
