@@ -1,0 +1,8 @@
+streamlit==1.13.0
+streamlit-aggrid==0.2.2.post2
+streamlit-nested-layout==0.1.1
+streamlit_nested_layout
+cryptography==38.0.1
+pandas==1.5.2
+openpyxl==3.0.10
+numpy==1.23.3
