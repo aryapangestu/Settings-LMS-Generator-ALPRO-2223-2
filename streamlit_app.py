@@ -649,12 +649,12 @@ elif jenis == "TP":
         right.success("Video tutorial: https://youtu.be/L7SA_LavtVg")
 
         right.subheader("General")
-        if kelas == "IF-45-INT":
+        if kelas == "IF-46-INT":
             assignmentName = "Assignment name: Preliminary Test Module " + \
                 str(modulTP)
             right.write(assignmentName)
             right.write("Description: ")
-            desc = '\nThe following is an Preliminary Test for module %s of the data structure course.\n\nPlease pay attention to the rules in this PT!' % (
+            desc = '\nThe following is an Preliminary Test for module %s of the programming algorithm course.\n\nPlease pay attention to the rules in this PT!' % (
                 modulTP)
             right.write(desc)
         else:
@@ -666,7 +666,7 @@ elif jenis == "TP":
                     str(modulTP)
             right.write(assignmentName)
             right.write("Description: ")
-            desc = '\nBerikut merupakan tugas pendahuluan modul %s mata kuliah struktur data.\n\nHarap perhatikan aturan yang ada pada TP ini!' % (
+            desc = '\nBerikut merupakan tugas pendahuluan modul %s mata kuliah algoritma pemrograman.\n\nHarap perhatikan aturan yang ada pada TP ini!' % (
                 modulTP)
             right.write(desc)
 
