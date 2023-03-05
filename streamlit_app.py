@@ -26,8 +26,8 @@ right.write("Hasil:")
 
 left.write("Isi datanya:")
 
-# listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
-listJenis = ["Duduk acak", "Jurnal"]
+listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
+# listJenis = ["Duduk acak", "Jurnal"]
 jenis = left.selectbox(
     "Jenis",
     listJenis,
@@ -832,23 +832,23 @@ elif jenis == "Duduk acak":
             batas = -1
 
     if kelas == "IF-46-09" or kelas == "SE-46-04" or kelas == "IF-46-10" or kelas == "DS-46-01" or kelas == "IF-46-03":
-        timeStart = datetime.time(6, 30)
+        timeStart = datetime.time(6, 40)
     elif kelas == "SE-46-03 - LAB 0605" or kelas == "SE-46-03 - LAB 0617":
-        timeStart = datetime.time(7, 30)
+        timeStart = datetime.time(7, 40)
     elif kelas == "IF-46-11" or kelas == "IT-46-04 - LAB 0604" or kelas == "IT-46-04 - LAB 0605" or kelas == "IF-46-01" or kelas == "IF-46-07" or kelas == "IT-46-03":
-        timeStart = datetime.time(9, 30)
+        timeStart = datetime.time(9, 40)
     elif kelas == "SE-46-02" or kelas == "IF-46-06":
-        timeStart = datetime.time(10, 30)
+        timeStart = datetime.time(10, 40)
     elif kelas == "IT-46-02 - LAB 0604" or kelas == "IT-46-02 - LAB 0605" or kelas == "IF-46-02" or kelas == "IF-46-12":
-        timeStart = datetime.time(12, 30)
+        timeStart = datetime.time(12, 40)
     elif kelas == "IF-46-04" or kelas == "IF-46-08" or kelas == "IT-46-01":
-        timeStart = datetime.time(13, 30)
+        timeStart = datetime.time(13, 40)
     elif kelas == "DS-46-03" or kelas == "IF-46-05" or kelas == "SE-46-01" or kelas == "DS-46-02" or kelas == "IF-46-INT":
-        timeStart = datetime.time(15, 30)
+        timeStart = datetime.time(15, 40)
     elif kelas == "IF-46-02.1PJJ" or kelas == "IF-46-01.1PJJ":
         timeStart = datetime.time(18, 30)
     startCount = datetime.datetime.combine(nowDate, timeStart)
-    endCount = startCount + timedelta(minutes=3)
+    endCount = startCount + timedelta(minutes=110)
 
     ph = st.empty()
 
@@ -982,7 +982,7 @@ elif jenis == "Duduk acak":
     while (((datetime.datetime.now() < startCount and datetime.datetime.now() < endCount) or (datetime.datetime.now() > startCount and datetime.datetime.now() > endCount)) and (endCount - datetime.datetime.now()).days >= 0):
         # calculate hours, minutes, and seconds
         secs = (startCount - datetime.datetime.now()).seconds
-        dd, hh, mm, ss = (endCount - datetime.datetime.now()
+        dd, hh, mm, ss = (startCount - datetime.datetime.now()
                           ).days, secs//3600, (secs//60) % 60, secs % 60
         # output the countdown with hours, minutes, and seconds
         ph.metric("Praktikum dimulai dalam:",
