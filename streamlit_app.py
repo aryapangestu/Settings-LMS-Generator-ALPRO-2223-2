@@ -26,8 +26,8 @@ right.write("Hasil:")
 
 left.write("Isi datanya:")
 
-listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
-# listJenis = ["Duduk acak", "Jurnal"]
+# listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
+listJenis = ["Duduk acak", "Jurnal"]
 jenis = left.selectbox(
     "Jenis",
     listJenis,
