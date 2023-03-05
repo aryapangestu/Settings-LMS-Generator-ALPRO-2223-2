@@ -7,6 +7,7 @@ from cryptography.fernet import Fernet
 import pandas as pd
 import streamlit_nested_layout
 import numpy as np
+import time
 
 
 def load_data(sheets_url):
@@ -16,8 +17,9 @@ def load_data(sheets_url):
 
 st.set_page_config(layout="wide", page_icon="🎓",
                    page_title="Generator")
-st.title("🎓 Generator ALPRO 2223-2")
-left, right = st.columns([1, 3])
+st.sidebar.title("🎓 Generator ALPRO 2223-2")
+right = st
+left = st.sidebar
 
 right.write("Hasil:")
 
@@ -122,7 +124,6 @@ elif jenis == "Duduk acak":
         "Kelas",
         (df["Kelas"].drop_duplicates())
     )
-
     left.write('Pilih nomor meja yang tidak bisa digunakan:')
     columns = left.columns(5)
     options = []
@@ -804,6 +805,53 @@ elif jenis == "TP":
                 "Require view: ✅ Student must submit to this activity to complete it")
 
 elif jenis == "Duduk acak":
+    # nowDate = datetime.datetime.now()
+    # while nowDate.strftime("%A") != "Sunday":
+    #     nowDate = nowDate + timedelta(days=1)
+    # timeStart = datetime.time(18, 00)
+    nowDate = datetime.datetime.now()
+    if kelas == "IF-46-09" or kelas == "SE-46-04" or kelas == "IF-46-11" or kelas == "IT-46-02 - LAB 0604" or kelas == "IT-46-02 - LAB 0605" or kelas == "DS-46-03" or kelas == "IF-46-05" or kelas == "IF-46-01.1PJJ":
+        while nowDate.strftime("%A") != "Monday":
+            nowDate = nowDate + timedelta(days=1)
+    elif kelas == "IF-46-10" or kelas == "DS-46-01" or kelas == "IT-46-04 - LAB 0604" or kelas == "IT-46-04 - LAB 0605" or kelas == "IF-46-02" or kelas == "SE-46-01":
+        while nowDate.strftime("%A") != "Tuesday":
+            nowDate = nowDate + timedelta(days=1)
+    elif kelas == "IF-46-01" or kelas == "IF-46-12" or kelas == "DS-46-02" or kelas == "IF-46-INT":
+        while nowDate.strftime("%A") != "Wednesday":
+            nowDate = nowDate + timedelta(days=1)
+    elif kelas == "IF-46-03" or kelas == "IF-46-07" or kelas == "IT-46-03" or kelas == "IF-46-02.1PJJ":
+        while nowDate.strftime("%A") != "Thursday":
+            nowDate = nowDate + timedelta(days=1)
+    elif kelas == "IF-46-04":
+        while nowDate.strftime("%A") != "Friday":
+            nowDate = nowDate + timedelta(days=1)
+    elif "SE-46-03 - LAB 0605" or kelas == "SE-46-03 - LAB 0617" or kelas == "SE-46-02" or kelas == "IF-46-06" or kelas == "IF-46-08" or kelas == "IT-46-01":
+        batas = int(nowDate.strftime("%H"))
+        while nowDate.strftime("%A") != "Saturday" or batas > 10:
+            nowDate = nowDate + timedelta(days=1)
+            batas = -1
+
+    if kelas == "IF-46-09" or kelas == "SE-46-04" or kelas == "IF-46-10" or kelas == "DS-46-01" or kelas == "IF-46-03":
+        timeStart = datetime.time(6, 30)
+    elif kelas == "SE-46-03 - LAB 0605" or kelas == "SE-46-03 - LAB 0617":
+        timeStart = datetime.time(7, 30)
+    elif kelas == "IF-46-11" or kelas == "IT-46-04 - LAB 0604" or kelas == "IT-46-04 - LAB 0605" or kelas == "IF-46-01" or kelas == "IF-46-07" or kelas == "IT-46-03":
+        timeStart = datetime.time(9, 30)
+    elif kelas == "SE-46-02" or kelas == "IF-46-06":
+        timeStart = datetime.time(10, 30)
+    elif kelas == "IT-46-02 - LAB 0604" or kelas == "IT-46-02 - LAB 0605" or kelas == "IF-46-02" or kelas == "IF-46-12":
+        timeStart = datetime.time(12, 30)
+    elif kelas == "IF-46-04" or kelas == "IF-46-08" or kelas == "IT-46-01":
+        timeStart = datetime.time(13, 30)
+    elif kelas == "DS-46-03" or kelas == "IF-46-05" or kelas == "SE-46-01" or kelas == "DS-46-02" or kelas == "IF-46-INT":
+        timeStart = datetime.time(15, 30)
+    elif kelas == "IF-46-02.1PJJ" or kelas == "IF-46-01.1PJJ":
+        timeStart = datetime.time(18, 30)
+    startCount = datetime.datetime.combine(nowDate, timeStart)
+    endCount = startCount + timedelta(minutes=3)
+
+    ph = st.empty()
+
     ATable, BTable, CTable, DTable, ETable = right.columns(5)
     d = []
     for x in range(1, 51):
@@ -850,7 +898,7 @@ elif jenis == "Duduk acak":
 
     if ("{}".format(kelas)) not in st.session_state:
         st.session_state["{}".format(kelas)] = df[df["Kelas"] ==
-                                                  kelas].sample(frac=1).reset_index(drop=True)
+                                                  kelas].sample(frac=1, random_state=int(startCount.strftime("%j"))).reset_index(drop=True)
     df_acak = st.session_state["{}".format(kelas)]
     for i in NIMhapus:
         df_acak = df_acak.drop(
@@ -930,3 +978,29 @@ elif jenis == "Duduk acak":
     DTable.table(df_DStyler)
 
     ETable.table(df_EStyler)
+
+    while (((datetime.datetime.now() < startCount and datetime.datetime.now() < endCount) or (datetime.datetime.now() > startCount and datetime.datetime.now() > endCount)) and (endCount - datetime.datetime.now()).days >= 0):
+        # calculate hours, minutes, and seconds
+        secs = (startCount - datetime.datetime.now()).seconds
+        dd, hh, mm, ss = (endCount - datetime.datetime.now()
+                          ).days, secs//3600, (secs//60) % 60, secs % 60
+        # output the countdown with hours, minutes, and seconds
+        ph.metric("Praktikum dimulai dalam:",
+                  f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
+        time.sleep(1)
+
+    selisih = endCount - datetime.datetime.now()
+    while selisih.seconds != 0 and selisih.days >= 0:
+        # calculate hours, minutes, and seconds
+        selisih = endCount - datetime.datetime.now()
+        hh, mm, ss = selisih.seconds//3600, (selisih.seconds //
+                                             60) % 60, selisih.seconds % 60
+        # output the countdown with hours, minutes, and seconds
+        if hh == 0 and mm <= 10:
+            ph.metric("Waktu pengumpulan jawaban jurnal praktikum:",
+                      f"{hh:02d}:{mm:02d}:{ss:02d}")
+        else:
+            ph.metric("Waktu pengerjaan jurnal praktikum:",
+                      f"{hh:02d}:{mm:02d}:{ss:02d}")
+        time.sleep(1)
+    ph.write("Waktu habis!")
