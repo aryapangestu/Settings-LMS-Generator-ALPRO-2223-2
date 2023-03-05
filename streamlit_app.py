@@ -24,14 +24,16 @@ right.write("Hasil:")
 
 left.write("Isi datanya:")
 
+# listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
+listJenis = ["Duduk acak", "Jurnal"]
 jenis = left.selectbox(
     "Jenis",
-    ["Duduk acak", "Jurnal", "TP", "Question Bank"],
+    listJenis,
     index=0,
 )
 listKelas = ["IF-46-01", "IF-46-02", "IF-46-03", "IF-46-04", "IF-46-05", "IF-46-06", "IF-46-07", "IF-46-08", "IF-46-09", "IF-46-10", "IF-46-11", "IF-46-12", "IF-46-INT",
              "IF-46-01.1PJJ", "IF-46-02.1PJJ", "IT-46-01", "IT-46-02", "IT-46-03", "IT-46-04", "SE-46-01", "SE-46-02", "SE-46-03", "SE-46-04", "DS-46-01", "DS-46-02", "DS-46-03"]
-if jenis != "Question Bank":
+if jenis != "Question Bank" and jenis != "Duduk acak":
     kelas = left.selectbox(
         "Kelas",
         (listKelas)
@@ -115,6 +117,12 @@ elif jenis == "Question Bank":
 elif jenis == "Duduk acak":
     df = load_data(
         "https://docs.google.com/spreadsheets/d/1Tu--zAiYLB4HA3dD0OmAgaa6Vbkjyn7a/edit#gid=1051006003")
+
+    kelas = left.selectbox(
+        "Kelas",
+        (df["Kelas"].drop_duplicates())
+    )
+
     left.write('Pilih nomor meja yang tidak bisa digunakan:')
     columns = left.columns(5)
     options = []
@@ -204,7 +212,7 @@ if jenis == "Question Bank":
             questionname = "Question name: Asesmen Praktikum CLO 1_" + kelas
             right.write(questionname)
             right.write("Question text: ")
-            desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.zip/rar (Project C++)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Asesmen Praktikum CLO 1\n2. 🗒️ Project Code::Blocks.zip\n\nSelamat mengerjakan^^' % (
+            desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Asesmen Praktikum CLO 1\n2. 🗒️ Project Code::Blocks.zip\n\nSelamat mengerjakan^^' % (
                 calMod, kelas, calMod, kelas)
             right.write(desc)
 
@@ -213,7 +221,7 @@ if jenis == "Question Bank":
             questionname = "Question name: Practicum Assessment CLO 1_" + calMod
             right.write(questionname)
             right.write("Question text: ")
-            desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Project C++)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Practicum Assessment CLO 1\n2. 🗒️ Project Code::Blocks.zip\n\nGood luck^^' % (
+            desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Practicum Assessment CLO 1\n2. 🗒️ Project Code::Blocks.zip\n\nGood luck^^' % (
                 calMod, kelas, calMod, kelas)
             right.write(desc)
 
@@ -251,10 +259,10 @@ if jenis == "Question Bank":
             right.write(questionname)
             right.write("Question text: ")
             # if calMod == "5":
-            #     desc = '\nWaktu pengerjaan jurnal adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS kode dan output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.pdf (Screenshot kode dan output di terminal)\n2. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.zip/rar (Project C++)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Jurnal Modul %s\n2. 🗒️ SLL.cpp\n\nSelamat mengerjakan^^' % (
+            #     desc = '\nWaktu pengerjaan jurnal adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS kode dan output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.pdf (Screenshot kode dan output di terminal)\n2. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Jurnal Modul %s\n2. 🗒️ SLL.cpp\n\nSelamat mengerjakan^^' % (
             #         calMod, calMod, calMod)
             # else:
-            desc = '\nWaktu pengerjaan jurnal adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS kode dan output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.pdf (Screenshot kode dan output di terminal)\n2. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.zip/rar (Project C++)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Jurnal Modul %s\n\nSelamat mengerjakan^^' % (
+            desc = '\nWaktu pengerjaan jurnal adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS kode dan output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.pdf (Screenshot kode dan output di terminal)\n2. ALPRO_MOD%s_*KELAS_NIM_KODEASPRAK*.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Jurnal Modul %s\n\nSelamat mengerjakan^^' % (
                 calMod, calMod, calMod)
             right.write(desc)
 
@@ -275,10 +283,10 @@ if jenis == "Question Bank":
             right.write(questionname)
             right.write("Question text: ")
             # if calMod == "5":
-            #     desc = '\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the source code and output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of code and output in terminal)\n2. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Project C++)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Journal Module %s\n2. 🗒️ SLL.cpp\n\nGood luck^^' % (
+            #     desc = '\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the source code and output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of code and output in terminal)\n2. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Journal Module %s\n2. 🗒️ SLL.cpp\n\nGood luck^^' % (
             #         calMod, calMod, calMod)
             # else:
-            desc = '\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the source code and output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of code and output in terminal)\n2. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Project C++)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Journal Module %s\n\nGood luck^^' % (
+            desc = '\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the source code and output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of code and output in terminal)\n2. ALPRO_MOD%s_*CLASS_SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Journal Module %s\n\nGood luck^^' % (
                 calMod, calMod, calMod)
             right.write(desc)
 
@@ -309,7 +317,7 @@ elif jenis == "Jurnal":
                 assignmentName = "Name: Practicum Assessment CLO 1"
                 right.write(assignmentName)
                 right.write("Description: ")
-                desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.zip/rar (Project C++)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\nGood luck^^' % (
+                desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\nGood luck^^' % (
                     calMod, kelas, calMod, kelas)
                 right.write(desc)
             else:
@@ -318,7 +326,7 @@ elif jenis == "Jurnal":
                 assignmentName = "Name: Asesmen Praktikum CLO 1"
                 right.write(assignmentName)
                 right.write("Description: ")
-                desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Project C++)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111\n\nSelamat mengerjakan^^' % (
+                desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111\n\nSelamat mengerjakan^^' % (
                     calMod, kelas, calMod, kelas)
                 right.write(desc)
 
@@ -415,7 +423,7 @@ elif jenis == "Jurnal":
             assignmentName = "Assignment name: Jurnal Modul " + calMod
             right.write(assignmentName)
             right.write("Description: ")
-            desc = '\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Project C++)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\nSelamat mengerjakan.' % (
+            desc = '\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\nSelamat mengerjakan.' % (
                 calMod, kelas, calMod, kelas)
             right.write(desc)
 
@@ -540,7 +548,7 @@ elif jenis == "Jurnal":
                 assignmentName = "Name: Module Journal " + calMod
                 right.write(assignmentName)
                 right.write("Description: ")
-                desc = '\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the source code and output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.pdf (Screenshot of code and output in terminal)\n2. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.zip/rar (Project C++)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\nGood luck^^' % (
+                desc = '\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the source code and output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.pdf (Screenshot of code and output in terminal)\n2. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\nGood luck^^' % (
                     calMod, kelas, calMod, kelas)
                 right.write(desc)
             else:
@@ -549,7 +557,7 @@ elif jenis == "Jurnal":
                 assignmentName = "Name: Jurnal Modul " + calMod
                 right.write(assignmentName)
                 right.write("Description: ")
-                desc = '\nWaktu pengerjaan jurnal adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS kode dan output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot kode dan output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Project C++)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111\n\nSelamat mengerjakan^^' % (
+                desc = '\nWaktu pengerjaan jurnal adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS kode dan output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot kode dan output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111\n\nSelamat mengerjakan^^' % (
                     calMod, kelas, calMod, kelas)
                 right.write(desc)
 
