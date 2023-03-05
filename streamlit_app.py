@@ -979,28 +979,28 @@ elif jenis == "Duduk acak":
 
     ETable.table(df_EStyler)
 
-    # while (((datetime.datetime.now() < startCount and datetime.datetime.now() < endCount) or (datetime.datetime.now() > startCount and datetime.datetime.now() > endCount)) and (endCount - datetime.datetime.now()).days >= 0):
-    #     # calculate hours, minutes, and seconds
-    #     secs = (startCount - datetime.datetime.now()).seconds
-    #     dd, hh, mm, ss = (endCount - datetime.datetime.now()
-    #                       ).days, secs//3600, (secs//60) % 60, secs % 60
-    #     # output the countdown with hours, minutes, and seconds
-    #     ph.metric("Praktikum dimulai dalam:",
-    #               f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
-    #     time.sleep(1)
+    while (((datetime.datetime.now() < startCount and datetime.datetime.now() < endCount) or (datetime.datetime.now() > startCount and datetime.datetime.now() > endCount)) and (endCount - datetime.datetime.now()).days >= 0):
+        # calculate hours, minutes, and seconds
+        secs = (startCount - datetime.datetime.now()).seconds
+        dd, hh, mm, ss = (endCount - datetime.datetime.now()
+                          ).days, secs//3600, (secs//60) % 60, secs % 60
+        # output the countdown with hours, minutes, and seconds
+        ph.metric("Praktikum dimulai dalam:",
+                  f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
+        time.sleep(1)
 
-    # selisih = endCount - datetime.datetime.now()
-    # while selisih.seconds != 0 and selisih.days >= 0:
-    #     # calculate hours, minutes, and seconds
-    #     selisih = endCount - datetime.datetime.now()
-    #     hh, mm, ss = selisih.seconds//3600, (selisih.seconds //
-    #                                          60) % 60, selisih.seconds % 60
-    #     # output the countdown with hours, minutes, and seconds
-    #     if hh == 0 and mm <= 10:
-    #         ph.metric("Waktu pengumpulan jawaban jurnal praktikum:",
-    #                   f"{hh:02d}:{mm:02d}:{ss:02d}")
-    #     else:
-    #         ph.metric("Waktu pengerjaan jurnal praktikum:",
-    #                   f"{hh:02d}:{mm:02d}:{ss:02d}")
-    #     time.sleep(1)
-    # ph.write("Waktu habis!")
+    selisih = endCount - datetime.datetime.now()
+    while selisih.seconds != 0 and selisih.days >= 0:
+        # calculate hours, minutes, and seconds
+        selisih = endCount - datetime.datetime.now()
+        hh, mm, ss = selisih.seconds//3600, (selisih.seconds //
+                                             60) % 60, selisih.seconds % 60
+        # output the countdown with hours, minutes, and seconds
+        if hh == 0 and mm <= 10:
+            ph.metric("Waktu pengumpulan jawaban jurnal praktikum:",
+                      f"{hh:02d}:{mm:02d}:{ss:02d}")
+        else:
+            ph.metric("Waktu pengerjaan jurnal praktikum:",
+                      f"{hh:02d}:{mm:02d}:{ss:02d}")
+        time.sleep(1)
+    ph.write("Waktu habis!")
