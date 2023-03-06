@@ -848,7 +848,8 @@ elif jenis == "Duduk acak":
         timeStart = datetime.time(15, 40)
     elif kelas == "IF-46-02.1PJJ" or kelas == "IF-46-01.1PJJ":
         timeStart = datetime.time(18, 30)
-    startCount = datetime.datetime.combine(nowDate, timeStart)
+    tz = pytz.timezone('Asia/Jakarta')
+    startCount = tz.localize(datetime.datetime.combine(nowDate, timeStart))
     endCount = startCount + timedelta(minutes=110)
 
     ph = st.empty()
