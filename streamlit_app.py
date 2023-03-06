@@ -42,7 +42,7 @@ if jenis != "Question Bank" and jenis != "Duduk acak":
         (listKelas)
     )
 
-    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
     if kelas == "IF-46-09" or kelas == "SE-46-04" or kelas == "IF-46-11" or kelas == "IT-46-02" or kelas == "DS-46-03" or kelas == "IF-46-05" or kelas == "IF-46-01.1PJJ":
         while nowDate.strftime("%A") != "Monday":
             nowDate = nowDate + timedelta(days=1)
@@ -637,7 +637,7 @@ elif jenis == "Jurnal":
                 """ % (calMod)
             video.write(warningSettingQUIZ)
 elif jenis == "TP":
-    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
 
     week = int(nowDate.strftime("%V"))
 
@@ -806,11 +806,11 @@ elif jenis == "TP":
                 "Require view: ✅ Student must submit to this activity to complete it")
 
 elif jenis == "Duduk acak":
-    # nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+    # nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
     # while nowDate.strftime("%A") != "Sunday":
     #     nowDate = nowDate + timedelta(days=1)
     # timeStart = datetime.time(18, 00)
-    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
     if kelas == "IF-46-09" or kelas == "SE-46-04" or kelas == "IF-46-11" or kelas == "IT-46-02 - LAB 0604" or kelas == "IT-46-02 - LAB 0605" or kelas == "DS-46-03" or kelas == "IF-46-05" or kelas == "IF-46-01.1PJJ":
         while nowDate.strftime("%A") != "Monday":
             nowDate = nowDate + timedelta(days=1)
@@ -980,22 +980,22 @@ elif jenis == "Duduk acak":
 
     ETable.table(df_EStyler)
 
-    while (((datetime.datetime.now(pytz.timezone('Asia/Jakarta'))() < startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta'))() < endCount) or (datetime.datetime.now(pytz.timezone('Asia/Jakarta'))() > startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta'))() > endCount)) and (endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()).days >= 0):
+    while (((datetime.datetime.now(pytz.timezone('Asia/Jakarta')) < startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta')) < endCount) or (datetime.datetime.now(pytz.timezone('Asia/Jakarta')) > startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta')) > endCount)) and (endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))).days >= 0):
         # calculate hours, minutes, and seconds
         secs = (startCount -
-                datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()).seconds
-        dd, hh, mm, ss = (startCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+                datetime.datetime.now(pytz.timezone('Asia/Jakarta'))).seconds
+        dd, hh, mm, ss = (startCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
                           ).days, secs//3600, (secs//60) % 60, secs % 60
         # output the countdown with hours, minutes, and seconds
         ph.metric("Praktikum dimulai dalam:",
                   f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
         time.sleep(1)
 
-    selisih = endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+    selisih = endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
     while selisih.seconds != 0 and selisih.days >= 0:
         # calculate hours, minutes, and seconds
         selisih = endCount - \
-            datetime.datetime.now(pytz.timezone('Asia/Jakarta'))()
+            datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
         hh, mm, ss = selisih.seconds//3600, (selisih.seconds //
                                              60) % 60, selisih.seconds % 60
         # output the countdown with hours, minutes, and seconds
