@@ -990,7 +990,7 @@ elif jenis == "Duduk acak":
         # output the countdown with hours, minutes, and seconds
         ph.metric("Praktikum dimulai dalam:",
                   f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
-        time.sleep(0.5)
+        time.sleep(0.01)
 
     selisih = endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
     while selisih.seconds != 0 and selisih.days >= 0:
@@ -1006,5 +1006,5 @@ elif jenis == "Duduk acak":
         else:
             ph.metric("Waktu pengerjaan jurnal praktikum:",
                       f"{hh:02d}:{mm:02d}:{ss:02d}")
-        time.sleep(0.5)
+        time.sleep(0.01)
     ph.write("Waktu habis!")
