@@ -27,8 +27,8 @@ right.write("Hasil:")
 
 left.write("Isi datanya:")
 
-# listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
-listJenis = ["Duduk acak", "Jurnal"]
+listJenis = ["Duduk acak", "Jurnal", "TP", "Question Bank"]
+# listJenis = ["Duduk acak", "Jurnal"]
 jenis = left.selectbox(
     "Jenis",
     listJenis,
@@ -981,30 +981,30 @@ elif jenis == "Duduk acak":
 
     ETable.table(df_EStyler)
 
-    while (((datetime.datetime.now(pytz.timezone('Asia/Jakarta')) < startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta')) < endCount) or (datetime.datetime.now(pytz.timezone('Asia/Jakarta')) > startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta')) > endCount)) and (endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))).days >= 0):
-        # calculate hours, minutes, and seconds
-        secs = (startCount -
-                datetime.datetime.now(pytz.timezone('Asia/Jakarta'))).seconds
-        dd, hh, mm, ss = (startCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
-                          ).days, secs//3600, (secs//60) % 60, secs % 60
-        # output the countdown with hours, minutes, and seconds
-        ph.metric("Praktikum dimulai dalam:",
-                  f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
-        time.sleep(0.001)
+    # while (((datetime.datetime.now(pytz.timezone('Asia/Jakarta')) < startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta')) < endCount) or (datetime.datetime.now(pytz.timezone('Asia/Jakarta')) > startCount and datetime.datetime.now(pytz.timezone('Asia/Jakarta')) > endCount)) and (endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))).days >= 0):
+    #     # calculate hours, minutes, and seconds
+    #     secs = (startCount -
+    #             datetime.datetime.now(pytz.timezone('Asia/Jakarta'))).seconds
+    #     dd, hh, mm, ss = (startCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
+    #                       ).days, secs//3600, (secs//60) % 60, secs % 60
+    #     # output the countdown with hours, minutes, and seconds
+    #     ph.metric("Praktikum dimulai dalam:",
+    #               f"{dd:02d}:{hh:02d}:{mm:02d}:{ss:02d}")
+    #     time.sleep(0.001)
 
-    selisih = endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
-    while selisih.seconds != 0 and selisih.days >= 0:
-        # calculate hours, minutes, and seconds
-        selisih = endCount - \
-            datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
-        hh, mm, ss = selisih.seconds//3600, (selisih.seconds //
-                                             60) % 60, selisih.seconds % 60
-        # output the countdown with hours, minutes, and seconds
-        if hh == 0 and mm <= 10:
-            ph.metric("Waktu pengumpulan jawaban jurnal praktikum:",
-                      f"{hh:02d}:{mm:02d}:{ss:02d}")
-        else:
-            ph.metric("Waktu pengerjaan jurnal praktikum:",
-                      f"{hh:02d}:{mm:02d}:{ss:02d}")
-        time.sleep(0.001)
-    ph.write("Waktu habis!")
+    # selisih = endCount - datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
+    # while selisih.seconds != 0 and selisih.days >= 0:
+    #     # calculate hours, minutes, and seconds
+    #     selisih = endCount - \
+    #         datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
+    #     hh, mm, ss = selisih.seconds//3600, (selisih.seconds //
+    #                                          60) % 60, selisih.seconds % 60
+    #     # output the countdown with hours, minutes, and seconds
+    #     if hh == 0 and mm <= 10:
+    #         ph.metric("Waktu pengumpulan jawaban jurnal praktikum:",
+    #                   f"{hh:02d}:{mm:02d}:{ss:02d}")
+    #     else:
+    #         ph.metric("Waktu pengerjaan jurnal praktikum:",
+    #                   f"{hh:02d}:{mm:02d}:{ss:02d}")
+    #     time.sleep(0.001)
+    # ph.write("Waktu habis!")
