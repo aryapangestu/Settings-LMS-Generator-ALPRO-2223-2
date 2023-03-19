@@ -411,7 +411,7 @@ elif jenis == "Jurnal":
         waktuPraktikum = datetime.datetime.combine(tanggalMulai, jam)
 
         if kelas == "IF-46-02.1PJJ" or kelas == "IF-46-01.1PJJ":
-            right.success("Video tutorial: https://youtu.be/L7SA_LavtVg")
+            right.success("Video tutorial: https://youtu.be/9CtzSOxZS-4")
             warningPJJ = """
             Jurnal untuk kelas PJJ HARUS disertai video tutorial
 
