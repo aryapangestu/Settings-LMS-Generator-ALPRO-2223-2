@@ -36,7 +36,7 @@ jenis = left.selectbox(
 )
 listKelas = ["IF-46-01", "IF-46-02", "IF-46-03", "IF-46-04", "IF-46-05", "IF-46-06", "IF-46-07", "IF-46-08", "IF-46-09", "IF-46-10", "IF-46-11", "IF-46-12", "IF-46-INT",
              "IF-46-01.1PJJ", "IF-46-02.1PJJ", "IT-46-01", "IT-46-02", "IT-46-03", "IT-46-04", "SE-46-01", "SE-46-02", "SE-46-03", "SE-46-04", "DS-46-01", "DS-46-02", "DS-46-03"]
-if jenis != "Question Bank" and jenis != "Duduk acak":
+if jenis != "Question Bank" and jenis != "Duduk acak" and jenis != "TP":
     kelas = left.selectbox(
         "Kelas",
         (listKelas)
@@ -96,6 +96,11 @@ if jenis == "Jurnal":
         value=int(week)-selisihWeek
     )
 elif jenis == "TP":
+    kelas = left.selectbox(
+        "Kelas",
+        (["REG", "INT", "IF-46-01.1PJJ", "IF-46-02.1PJJ"])
+    )
+
     modulTP = left.number_input(
         "Modul",
         value=(int(date.today().strftime("%V"))-(selisihWeek+1))+2
@@ -637,17 +642,14 @@ elif jenis == "Jurnal":
                 """ % (calMod)
             video.write(warningSettingQUIZ)
 elif jenis == "TP":
-    nowDate = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
+    nowDate = datetime.datetime(
+        2023, 1, 1, tzinfo=pytz.timezone('Asia/Jakarta'))
 
-    week = int(nowDate.strftime("%V"))
-
-    while nowDate.strftime("%A") != "Monday" or (int(week) - selisihWeek) != int(modulTP):
+    while nowDate.strftime("%A") != "Monday" or (int(nowDate.strftime("%V")) - selisihWeek) != int(modulTP):
+        # st.write(int(week) - selisihWeek)
         nowDate = nowDate + timedelta(days=1)
-        if (nowDate.strftime("%A") == "Monday"):
-            week = int(nowDate.strftime("%V"))
-
-    waktuPengumpulanTP = datetime.datetime.combine(
-        nowDate, datetime.time(6, 00))
+        waktuPengumpulanTP = datetime.datetime.combine(
+            nowDate, datetime.time(6, 00))
 
     waktuMunculTP = waktuPengumpulanTP - timedelta(days=3)
     waktuMunculTP = datetime.datetime.combine(
@@ -659,12 +661,12 @@ elif jenis == "TP":
         right.success("Video tutorial: https://youtu.be/L7SA_LavtVg")
 
         right.subheader("General")
-        if kelas == "IF-46-INT":
+        if kelas == "IF-46-INT" or kelas == "INT":
             assignmentName = "Assignment name: Preliminary Test Module " + \
                 str(modulTP)
             right.write(assignmentName)
             right.write("Description: ")
-            desc = '\nThe following is an Preliminary Test for module %s of the programming algorithm course.\n\nPlease pay attention to the rules in this PT!' % (
+            desc = '\nThe following is an Preliminary Test for module %s of the programming algorithm course.\n\nPlease pay attention to the rules in this PT!\n\n**Question Links:**\n1. 🗒️ Preliminary Task Question\n\nGood luck^^' % (
                 modulTP)
             right.write(desc)
         else:
@@ -676,7 +678,7 @@ elif jenis == "TP":
                     str(modulTP)
             right.write(assignmentName)
             right.write("Description: ")
-            desc = '\nBerikut merupakan tugas pendahuluan modul %s mata kuliah algoritma pemrograman.\n\nHarap perhatikan aturan yang ada pada TP ini!' % (
+            desc = '\nBerikut merupakan tugas pendahuluan modul %s mata kuliah algoritma pemrograman.\n\nHarap perhatikan aturan yang ada pada TP ini!\n\n**Link Soal:**\n1. 🗒️ Soal Tugas Pendahuluan\n\nSelamat mengerjakan^^' % (
                 modulTP)
             right.write(desc)
 
@@ -738,23 +740,23 @@ elif jenis == "TP":
                 hour=23, minute=59, second=59)
 
             DuedatePrint = "Due date: " + \
-                waktuPengumpulanTP.strftime("%d %B %Y") + " | " + \
-                waktuPengumpulanTP.strftime("%H:%M")
+                waktuPengumpulanTP.strftime(
+                    "%d %B %Y") + " | " + waktuPengumpulanTP.strftime("%H:%M")
             right.write(DuedatePrint)
 
             CutOffDatePrint = "Cut-off date: " + \
-                waktuPengumpulanTP.strftime("%d %B %Y") + " | " + \
-                waktuPengumpulanTP.strftime("%H:%M")
+                waktuPengumpulanTP.strftime(
+                    "%d %B %Y") + " | " + waktuPengumpulanTP.strftime("%H:%M")
             right.write(CutOffDatePrint)
         else:
             DuedatePrint = "Due date: " + \
-                waktuPengumpulanTP.strftime("%d %B %Y") + " | " + \
-                waktuPengumpulanTP.strftime("%H:%M")
+                waktuPengumpulanTP.strftime(
+                    "%d %B %Y") + " | " + waktuPengumpulanTP.strftime("%H:%M")
             right.write(DuedatePrint)
 
             CutOffDatePrint = "Cut-off date: " + \
-                waktuPengumpulanTP.strftime("%d %B %Y") + " | " + \
-                waktuPengumpulanTP.strftime("%H:%M")
+                waktuPengumpulanTP.strftime(
+                    "%d %B %Y") + " | " + waktuPengumpulanTP.strftime("%H:%M")
             right.write(CutOffDatePrint)
 
         right.subheader("Submission types")
@@ -773,10 +775,11 @@ elif jenis == "TP":
         right.write("match: all")
 
         right.write("of the following: ")
-        Group = " Group " + kelas
-        htmlGroup = r'<img width="24" src="data:image/svg+xml;base64,%s"/>%s' % (
-            b64, Group)
-        right.write(htmlGroup, unsafe_allow_html=True)
+        if kelas == "IF-46-01.1PJJ" or kelas == "IF-46-02.1PJJ":
+            Group = " Group " + kelas
+            htmlGroup = r'<img width="24" src="data:image/svg+xml;base64,%s"/>%s' % (
+                b64, Group)
+            right.write(htmlGroup, unsafe_allow_html=True)
 
         DateFrom = " Date: from " + waktuMunculTP.strftime(
             "%d %B %Y") + " | " + waktuMunculTP.strftime("%H:%M")
@@ -789,8 +792,12 @@ elif jenis == "TP":
             DateUntilTP = DateUntilTP + timedelta(days=2)
             DateUntilTP = DateUntilTP.replace(hour=23, minute=59, second=59)
         else:
-            DateUntilTP = datetime.datetime.combine(nowDate, timeStart)
-            DateUntilTP = DateUntilTP + timedelta(minutes=60)
+            DateUntilTP = waktuPengumpulanTP + timedelta(days=5)
+            DateUntilTP = datetime.datetime.combine(
+                DateUntilTP, datetime.time(15, 55))
+
+            # DateUntilTP = datetime.datetime.combine(nowDate, timeStart)
+            # DateUntilTP = DateUntilTP + timedelta(minutes=60)
         DateUntil = " Date: until " + \
             DateUntilTP.strftime(
                 "%d %B %Y") + " | " + DateUntilTP.strftime("%H:%M")
