@@ -142,7 +142,7 @@ elif jenis == "Duduk acak":
     df_kelas = df[df["Kelas"] == kelas].reset_index(drop=True)
     k = 1
     A1, B1 = left.columns(2)
-    for i, todo_text in df_kelas["NIM"].iteritems():
+    for i, todo_text in df_kelas["NIM"].items():
         if k >= 1 and k <= np.ceil(len(df_kelas["NIM"])/2):
             A1.checkbox(f'{todo_text}',
                         key='optionNIM_'+str(k))
