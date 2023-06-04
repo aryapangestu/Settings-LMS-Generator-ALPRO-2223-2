@@ -400,13 +400,13 @@ elif jenis == "Jurnal":
             if kelas == "IF-46-INT":
                 warningSettingQUIZ = """
             1. Maximum grade = 100.00 >> Save
-            2. Add >> from question bank >> Select a category: Asesmen Praktikum 2 >> ✅ Practicum Assessment 2_%s>> Add selected questions to the quiz
+            2. Add >> from question bank >> ✅ Practicum Assessment 2_%s>> Add selected questions to the quiz
             3. Edit maximum mark >> ✏️ >> 100.00 >> Enter
             """ % (kelas)
             else:
                 warningSettingQUIZ = """
                 1. Maximum grade = 100.00 >> Save
-                2. Add >> from question bank >> Select a category: Asesmen Praktikum 2 >> ✅ Asesmen Praktikum 2_%s>> Add selected questions to the quiz
+                2. Add >> from question bank >> ✅ Asesmen Praktikum 2_%s>> Add selected questions to the quiz
                 3. Edit maximum mark >> ✏️ >> 100.00 >> Enter
                 """ % (kelas)
             video.write(warningSettingQUIZ)
