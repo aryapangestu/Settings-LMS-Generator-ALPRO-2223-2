@@ -81,7 +81,7 @@ if jenis != "Question Bank" and jenis != "Duduk acak" and jenis != "TP":
     elif kelas == "IF-46-02.1PJJ" or kelas == "IF-46-01.1PJJ":
         timeStart = datetime.time(18, 30)
 
-selisihWeek = 7
+selisihWeek = 8
 
 if jenis == "Jurnal":
     tanggalMulai = left.date_input(
@@ -194,7 +194,7 @@ b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
 b641 = base64.b64encode(svg1.encode('utf-8')).decode("utf-8")
 
 if jenis == "Question Bank":
-    if modulTP == 7 or modulTP == 12 or modulTP == 15:
+    if modulTP == 15:
         key = Fernet.generate_key()
         fernet = Fernet(key)
 
@@ -203,7 +203,7 @@ if jenis == "Question Bank":
 
             ⚙️ >> ⚙️ More >> Course administration >> Question bank >> Questions
 
-            Select a category: Asesmen Praktikum CLO 1 >> Create a new question ... >> Essay >> Add
+            Select a category: Asesmen Praktikum 2 >> Create a new question ... >> Essay >> Add
             """
         right.warning(warningBankQUIZ, icon="⚠️")
 
@@ -216,19 +216,19 @@ if jenis == "Question Bank":
 
         if kelas != "IF-46-INT":
             right.subheader("General")
-            questionname = "Question name: Asesmen Praktikum CLO 1_" + kelas
+            questionname = "Question name: Asesmen Praktikum 2_" + kelas
             right.write(questionname)
             right.write("Question text: ")
-            desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Asesmen Praktikum CLO 1\n2. 🗒️ Project Code::Blocks.zip\n\nSelamat mengerjakan^^' % (
+            desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL DAN LMS\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_*NIM_KODEASPRAK*.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111.\n\n**Link Soal:**\n1. 🗒️ Asesmen Praktikum CLO 2\n\nSelamat mengerjakan^^' % (
                 calMod, kelas, calMod, kelas)
             right.write(desc)
 
         else:
             right.subheader("General")
-            questionname = "Question name: Practicum Assessment CLO 1_" + calMod
+            questionname = "Question name: Practicum Assessment 2_" + calMod
             right.write(questionname)
             right.write("Question text: ")
-            desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Practicum Assessment CLO 1\n2. 🗒️ Project Code::Blocks.zip\n\nGood luck^^' % (
+            desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS AND LMS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_*SID_PRACTICUM-ASSISTANT-CODE*.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\n**Question Links:**\n1. 🗒️ Practicum Assessment 2\n\nGood luck^^' % (
                 calMod, kelas, calMod, kelas)
             right.write(desc)
 
@@ -303,7 +303,7 @@ if jenis == "Question Bank":
         right.write("Require attachments: 2")
 elif jenis == "Jurnal":
     calMod = str(modulTP)
-    if calMod == "7" or calMod == "12" or calMod == "15":
+    if calMod == "15":
 
         if kelas == "IF-46-02.1PJJ" or kelas == "IF-46-01.1PJJ":
             right.write("PJJ nanti diinfokan lagi")
@@ -321,19 +321,19 @@ elif jenis == "Jurnal":
             if kelas == "IF-46-INT":
                 right.subheader("General")
                 calMod = str(modulTP)
-                assignmentName = "Name: Practicum Assessment CLO 1"
+                assignmentName = "Name: Practicum Assessment 2"
                 right.write(assignmentName)
                 right.write("Description: ")
-                desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\nGood luck^^' % (
+                desc = '\nPLEASE READ THE ASSESSMENT RULES ATTACHED IN THE QUESTIONS AND LMS\n\nThe Journal time limit is 100 minutes + 10 minutes for submitting time, please submit before the specified time. The submitted file is PDF and contains a screenshot of the output, also with your project file, zipped into .rar/.zip with the format name:\n1. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.pdf (Screenshot of the output in terminal)\n2. ALPRO_MOD%s_%s_SID_PRACTICUM-ASSISTANT-CODE.zip/rar (Go Language)\n\nNOTE: every function and procedure MUST include SID, example: insertFirst_130121XXXX\n\nGood luck^^' % (
                     calMod, kelas, calMod, kelas)
                 right.write(desc)
             else:
                 right.subheader("General")
                 calMod = str(modulTP)
-                assignmentName = "Name: Asesmen Praktikum CLO 1"
+                assignmentName = "Name: Asesmen Praktikum 2"
                 right.write(assignmentName)
                 right.write("Description: ")
-                desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111\n\nSelamat mengerjakan^^' % (
+                desc = '\nSILAHKAN BACA ATURAN ASESMEN YANG SUDAH TERLAMPIR DI SOAL DAN LMS\n\nWaktu pengerjaan adalah 100 menit + 10 menit untuk waktu pengumpulan, silahkan submit sebelum waktu yang telah ditentukan. Yang dikumpulkan adalah PDF berisi SS output beserta folder Project kalian dalam bentuk rar/zip dengan format:\n1. ALPRO_MOD%s_%s_NIM_KODEASPRAK.pdf (Screenshot output di terminal)\n2. ALPRO_MOD%s_%s_NIM_KODEASPRAK.zip/rar (Go Language)\n\nCATATAN: Untuk setiap soal nama fungsi atau prosedur WAJIB menyertakan NIM, contoh: insertFirst_1301901111\n\nSelamat mengerjakan^^' % (
                     calMod, kelas, calMod, kelas)
                 right.write(desc)
 
@@ -400,13 +400,13 @@ elif jenis == "Jurnal":
             if kelas == "IF-46-INT":
                 warningSettingQUIZ = """
             1. Maximum grade = 100.00 >> Save
-            2. Add >> from question bank >> Select a category: Asesmen Praktikum CLO 1 >> ✅ Practicum Assessment CLO 1_%s>> Add selected questions to the quiz
+            2. Add >> from question bank >> Select a category: Asesmen Praktikum 2 >> ✅ Practicum Assessment 2_%s>> Add selected questions to the quiz
             3. Edit maximum mark >> ✏️ >> 100.00 >> Enter
             """ % (kelas)
             else:
                 warningSettingQUIZ = """
                 1. Maximum grade = 100.00 >> Save
-                2. Add >> from question bank >> Select a category: Asesmen Praktikum CLO 1 >> ✅ Asesmen Praktikum CLO 1_%s>> Add selected questions to the quiz
+                2. Add >> from question bank >> Select a category: Asesmen Praktikum 2 >> ✅ Asesmen Praktikum 2_%s>> Add selected questions to the quiz
                 3. Edit maximum mark >> ✏️ >> 100.00 >> Enter
                 """ % (kelas)
             video.write(warningSettingQUIZ)
